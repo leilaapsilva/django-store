@@ -1,15 +1,33 @@
 {% extends 'store/base.html' %}
+{% load static %}
+
 
 {% block content %}
+  <div class="container">
+    <div class="row row-cols-2"> 
 
-{% if latest_products_list %}
-    <ul>
-    {% for product in latest_products_list %}
-        <li><a href={% url 'detail' product.id %}>{{ product.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No products are available.</p>
-{% endif %}
+        {% if latest_products_list %}
+            {% for product in latest_products_list %}
 
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/41DQoLIfsRL._AC_SY400_.jpg" class="card-img-top" alt="...">
+
+                    <!-- <img src="{% static "store/teste.png" %}" alt="Imagem"> -->
+                    <div class="card-body">
+                      <h5 class="card-title">{{ product.name }}</h5>
+                      <p class="card-text">R$ {{ product.price }}</p>
+                      <p class="card-text"> {{ product.description }}</p>
+                      <a href={% url 'detail' product.id %} class="btn btn-primary">Comprar</a>
+                    </div>
+                  </div>
+              </div>
+
+              {% endfor %}
+        {% else %}
+            <p>No products are available.</p>
+        {% endif %}
+
+    </div>
+</div>
 {% endblock %}

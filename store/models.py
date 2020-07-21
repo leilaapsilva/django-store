@@ -9,6 +9,8 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.FloatField(default=0)
     creation_date = models.DateTimeField('creation date', null=True)
+    description = models.CharField(max_length=1000, null=True)
+    image = models.FileField(upload_to = 'products/')
 
     def __str__(self):
         return self.name
